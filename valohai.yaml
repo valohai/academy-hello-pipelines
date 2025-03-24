@@ -1,8 +1,8 @@
 - step:
     name: evaluate
-    image: python:3.9
+    image: python:3.12
     command:
-    - pip install -r requirements.txt
+    - pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
     - python ./eval.py {parameters}
     parameters:
     - name: batch_size
@@ -17,15 +17,15 @@
       optional: true
 - step:
     name: generate-data
-    image: python:3.9
+    image: python:3.12
     command:
-    - pip install -r requirements.txt
+    - pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
     - python ./generate-data.py {parameters}
 - step:
     name: train-model
-    image: python:3.9
+    image: python:3.12
     command:
-    - pip install -r requirements.txt
+    - pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
     - python ./train.py {parameters}
     parameters:
     - name: batch_size
