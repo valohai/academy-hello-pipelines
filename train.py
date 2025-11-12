@@ -1,8 +1,6 @@
 import torch
-from torchvision import datasets
 from torch import nn
 from torch.utils.data import DataLoader
-import zipfile
 import valohai
 
 # Valohai: Define parameters
@@ -36,8 +34,9 @@ train_data_path = valohai.inputs("train").path()
 test_data_path = valohai.inputs("test").path()
 
 # Valohai: Load the previously generated train and test data
-train_data = torch.load(train_data_path)
-test_data = torch.load(test_data_path)
+# - weights_only=False; we trust the data not to be malicious
+train_data = torch.load(train_data_path, weights_only=False)
+test_data = torch.load(test_data_path, weights_only=False)
 
 # Create data loaders.
 train_dataloader = DataLoader(train_data, batch_size=batch_size)
