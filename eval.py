@@ -28,7 +28,8 @@ test_data_path = valohai.inputs("test").path()
 model_path = valohai.inputs("model").path()
 
 # Valohai: Load the previously generated test data
-test_data = torch.load(test_data_path)
+# - weights_only=False; we trust the data not to be malicious
+test_data = torch.load(test_data_path, weights_only=False)
 
 # Create data loaders.
 test_dataloader = DataLoader(test_data, batch_size=batch_size)
